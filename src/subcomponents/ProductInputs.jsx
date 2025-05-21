@@ -1,4 +1,7 @@
-function ProductInputs({ Descripcion, setDescripcion, precioUnitario, setprecioUnitario, stock, setstock, handleSubmit }) {
+import React from 'react';
+
+function ProductInputs({ Descripcion, setDescripcion, precioUnitario, setprecioUnitario, stock, setstock, handleSubmit, botonTexto }) {
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -11,7 +14,7 @@ function ProductInputs({ Descripcion, setDescripcion, precioUnitario, setprecioU
         <label>Existencias:</label>
         <input type="number" value={stock} onChange={e => setstock(parseInt(e.target.value))}/>
         <br />
-        <button type="submit">Ingresar</button>
+        <button type="submit">{botonTexto}</button>
       </div>
     </form>
   );
