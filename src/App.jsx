@@ -32,17 +32,14 @@ function App() {
       Productos.filter((producto) => producto.Descripcion.toLowerCase() === descripcion.toLowerCase()),
     );
     setModo('buscar');
+    setDescripcion('');
   };
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }} >
       <Header />
-
       <Main>
         <SearchBar descripcion={[descripcion, setDescripcion]} modo={[modo, setModo]} handleBuscarProducto={handleBuscarProducto} />
-
         {(() => {
           switch (modo) {
             case 'lista':
@@ -53,7 +50,6 @@ function App() {
               return <ProductForm Productos={[Productos, setProductos]} nuevoProducto={[productoEditando, setProductoEditando]} modo={[modo, setModo]} />
           }
         })()}
-
       </Main>
       <Footer />
     </div>

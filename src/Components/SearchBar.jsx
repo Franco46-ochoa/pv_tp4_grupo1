@@ -13,7 +13,6 @@ function SearchBar(props) {
       backgroundColor: '#282c34',
       color: 'white',
       padding: '5px',
-      /* with: '80vw', */
     },
   };
 
