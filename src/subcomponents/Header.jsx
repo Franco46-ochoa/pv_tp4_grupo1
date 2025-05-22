@@ -1,29 +1,31 @@
 import React from "react";
+import "../Css/Style.css";
 
-function Header() {
+function Header({ onAgregar, onListar, descripcion, handleBuscarProducto }) {
+  const [desc, setDesc] = descripcion;
+
   return (
-    <header
-      style={{
-        backgroundColor: '#282c34',
-        /* padding: '0.5rem', */
-        color: 'white',
-        width: '100vw',
-        
-        height: '6rem',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <h1 style={{ margin: "0", fontSize: "2.5rem" }}>Gestión de productos</h1>
-        <p style={{ marginTop: "10px", fontSize: "1.2rem" }}>
-          Trabajo Práctico Nº4 - Programación Visual
-        </p>
+    <header className="header">
+      <div className="header-content">
+        <div className="header-left">
+          <h1>Gestión de productos</h1>
+          <p>Trabajo Práctico Nº4 - Programación Visual</p>
+        </div>
+
+        <div className="header-right">
+          <input
+            type="text"
+            placeholder="Buscar producto..."
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+          <button onClick={handleBuscarProducto}>Buscar</button>
+          <button onClick={onAgregar}>Agregar</button>
+          <button onClick={onListar}>Listar</button>
+        </div>
       </div>
     </header>
   );
 }
 
 export default Header;
-

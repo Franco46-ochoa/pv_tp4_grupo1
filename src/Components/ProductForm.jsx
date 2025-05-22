@@ -1,10 +1,11 @@
-import React from "react";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import ProductInputs from "../subcomponents/ProductInputs";
 
 function ProductForm(props) {
   const [Productos, setProductos] = props.Productos;
   const [productoEditando, setProductoEditando] = props.nuevoProducto;
+  const setMostrarFormulario = props.setMostrarFormulario;
+  const setModo = props.setModo;
 
   const [Descripcion, setDescripcion] = useState("");
   const [precioUnitario, setprecioUnitario] = useState(0);
@@ -17,6 +18,7 @@ function ProductForm(props) {
       setstock(productoEditando.Stock);
     }
   }, [productoEditando]);
+
   const precioConDescuento = useMemo(() => {
     return precioUnitario - precioUnitario * 0.25;
   }, [precioUnitario]);
@@ -37,14 +39,12 @@ function ProductForm(props) {
       };
 
       if (productoEditando) {
-        // Editar producto
         const nuevaLista = Productos.map((p) =>
           p.Id === productoEditando.Id ? nuevoProducto : p
         );
         setProductos(nuevaLista);
         setProductoEditando(null);
       } else {
-        // Validar que no exista antes de agregar
         const existe = Productos.some(
           (p) => p.Descripcion.toLowerCase() === Descripcion.toLowerCase()
         );
@@ -55,29 +55,39 @@ function ProductForm(props) {
         setProductos([...Productos, nuevoProducto]);
       }
 
-      console.table([...Productos]); // Mostrar por consola
-
-      // Reset form
+      // Reset
       setDescripcion("");
       setprecioUnitario(0);
       setstock(0);
+
+      // Ocultar formulario y volver al modo lista
+      if (setMostrarFormulario) setMostrarFormulario(false);
+      if (setModo) setModo("lista");
     },
-    [Descripcion, precioUnitario, stock, Productos, productoEditando]
+    [
+      Descripcion,
+      precioUnitario,
+      stock,
+      Productos,
+      productoEditando,
+      setProductos,
+      setProductoEditando,
+      setMostrarFormulario,
+      setModo,
+    ]
   );
 
   return (
     <ProductInputs
-        Descripcion={Descripcion}
-        setDescripcion={setDescripcion}
-        precioUnitario={precioUnitario}
-        setprecioUnitario={setprecioUnitario}
-        stock={stock}
-        setstock={setstock}
-        handleSubmit={handleSubmit}
-        botonTexto={productoEditando ? "Guardar cambios" : "Ingresar"}
+      Descripcion={Descripcion}
+      setDescripcion={setDescripcion}
+      precioUnitario={precioUnitario}
+      setprecioUnitario={setprecioUnitario}
+      stock={stock}
+      setstock={setstock}
+      handleSubmit={handleSubmit}
+      botonTexto={productoEditando ? "Guardar cambios" : "Ingresar"}
     />
-
-
   );
 }
 

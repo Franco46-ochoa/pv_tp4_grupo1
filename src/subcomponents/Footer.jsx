@@ -1,17 +1,12 @@
 import React from "react";
+import "../Css/Style.css";
 
 function Footer() {
   return (
-    <footer style={{
-      backgroundColor: "#f1f1f1",
-      color: "#333",
-      padding: "15px",
-      textAlign: "center",
-      width: "100%"
-    }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <p style={{ margin: 0 }}>
-          © 2025 Grupo 999 - Facultad de Ingeniería
+    <footer  className="footer">
+      <div className="footer-text">
+        <p className="footer-p">
+          © 2025 Grupo 1 - Facultad de Ingeniería
         </p>
       </div>
     </footer>
