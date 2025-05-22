@@ -5,17 +5,17 @@ function ProductInputs({ Descripcion, setDescripcion, precioUnitario, setprecioU
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Producto:</label>
-        <input type="text" value={Descripcion} placeholder="Descripción" onChange={e => setDescripcion(e.target.value)}/>
-        <br />
-        <label>Precio: $</label>
-        <input type="number" value={precioUnitario} onChange={e => setprecioUnitario(parseFloat(e.target.value))}/>
-        <br />
-        <label>Existencias:</label>
-        <input type="number" value={stock} onChange={e => setstock(parseInt(e.target.value))}/>
-        <br />
-        <button type="submit">{botonTexto}</button>
+          <label>Descripción:</label>
+          <input style={{margin:"15px 25px"}} type="text" value={Descripcion} placeholder="Descripción" autoFocus onChange={e => setDescripcion(e.target.value)}/>
+          <br />
+          <label>Precio: $</label>
+          <input style={{margin:"15px 25px"}} type="number" value={precioUnitario} onChange={e => setprecioUnitario(parseFloat(e.target.value))}/>
+          <br />
+          <label>Existencias:</label>
+          <input style={{margin:"15px 25px"}} type="number" value={stock} onChange={e => setstock(parseInt(e.target.value))}/>
+          <br />
       </div>
+      <button type="submit">{botonTexto}</button>
     </form>
   );
 }

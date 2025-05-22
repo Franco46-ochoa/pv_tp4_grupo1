@@ -29,7 +29,7 @@ function App() {
 
   const handleBuscarProducto = () => {
     setProductoBuscado(
-      Productos.filter((producto) => producto.Descripcion === descripcion),
+      Productos.filter((producto) => producto.Descripcion.toLowerCase() === descripcion.toLowerCase()),
     );
     setModo('buscar');
   };
