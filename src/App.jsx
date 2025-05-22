@@ -16,9 +16,15 @@ function App() {
   useEffect(() => {
     console.log('Productos actualizados:', Productos);
   }, [Productos]);
+
   const handleDelete = (id) => {
     const nuevosProductos = Productos.filter((p) => p.Id !== id);
     setProductos(nuevosProductos);
+  };
+
+  const handleEdit = (producto) => {
+    setProductoEditando(producto);
+    setModo('nuevo');
   };
 
   const handleBuscarProducto = () => {
@@ -35,18 +41,19 @@ function App() {
       <Header />
 
       <Main>
-        <SearchBar descripcion={[descripcion, setDescripcion]} handleBuscarProducto={handleBuscarProducto} />
+        <SearchBar descripcion={[descripcion, setDescripcion]} modo={[modo, setModo]} handleBuscarProducto={handleBuscarProducto} />
 
         {(() => {
           switch (modo) {
             case 'lista':
-              return <ProductList productos={Productos} onEdit={(producto) => setProductoEditando(producto)} onDelete={handleDelete} />;
+              return <ProductList productos={Productos} onEdit={handleEdit} onDelete={handleDelete} />;
             case 'buscar':
-              return <ProductList productos={productoBuscado} onEdit={(producto) => setProductoEditando(producto)} onDelete={handleDelete} />;
+              return <ProductList productos={productoBuscado} modo={[modo, setModo]} onEdit={handleEdit} onDelete={handleDelete} />;
+            case 'nuevo':
+              return <ProductForm Productos={[Productos, setProductos]} nuevoProducto={[productoEditando, setProductoEditando]} modo={[modo, setModo]} />
           }
         })()}
 
-        <ProductForm Productos={[Productos, setProductos]} nuevoProducto={[productoEditando, setProductoEditando]} />
       </Main>
       <Footer />
     </div>

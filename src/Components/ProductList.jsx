@@ -1,13 +1,18 @@
 import React from 'react';
 import ProductItem from './ProductItem';
 
-function ProductList({ productos, onDelete, onEdit }) {
+function ProductList({ productos, onEdit, onDelete }) {
   if (!productos || productos.length === 0) {
     return <p>No hay productos para mostrar.</p>;
   }
 
   return (
-    <table border="1" cellPadding="8" cellSpacing="0" style={{ borderCollapse: 'collapse', width: '100%' }}>
+    <table
+      border='1'
+      cellPadding='8'
+      cellSpacing='0'
+      style={{ borderCollapse: 'collapse', width: '100%' }}
+    >
       <thead>
         <tr>
           <th>Descripción</th>
@@ -15,7 +20,7 @@ function ProductList({ productos, onDelete, onEdit }) {
           <th>Descuento</th>
           <th>Precio con Descuento</th>
           <th>Stock</th>
-          <th>Acciones</th> 
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -33,4 +38,3 @@ function ProductList({ productos, onDelete, onEdit }) {
 }
 
 export default ProductList;
-

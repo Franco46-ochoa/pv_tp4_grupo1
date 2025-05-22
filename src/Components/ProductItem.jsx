@@ -1,7 +1,6 @@
 import React from 'react';
 
-function ProductItem({ producto, onDelete, onEdit }) {
-
+function ProductItem({ producto, onEdit, onDelete }) {
   return (
     <tr>
       <td>{producto.Descripcion}</td>
@@ -10,8 +9,8 @@ function ProductItem({ producto, onDelete, onEdit }) {
       <td>${producto.PrecioConDescuento.toFixed(2)}</td>
       <td>{producto.Stock}</td>
       <td>
-      <button onClick={() => onEdit(producto)}>Editar</button>
-      <button onClick={() => onDelete(producto.Id)}>Eliminar</button>
+        <button onClick={() => onEdit(producto)}>Editar</button>
+        <button onClick={() => onDelete(producto.Id)}>Eliminar</button>
       </td>
     </tr>
   );
